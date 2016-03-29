@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.danilomendes.animations.MainActivity"
+    android:background="#FFFFFF">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="true">
+
+        <TextView
+            android:id="@+id/tv_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Please wait... Enjoy this cool effect..."
+            android:textSize="14sp"
+            android:gravity="center_horizontal"
+            android:textColor="#000000" />
+
+        <com.danilomendes.progressbar.InvertedTextProgressbar
+            android:id="@+id/progress_static"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:src="@drawable/progress_container"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
