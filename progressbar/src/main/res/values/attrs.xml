@@ -6,5 +6,7 @@
         <attr name="text_inverted_color" format="color"/>
         <attr name="text_size" format="dimension"/>
         <attr name="text_typeface" format="integer"/>
+        <attr name="max_progress" format="integer"/>
+        <attr name="min_progress" format="integer"/>
     </declare-styleable>
 </resources>

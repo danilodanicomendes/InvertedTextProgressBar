@@ -32,14 +32,9 @@ public class InvertedTextProgressbar extends ImageView {
     private String mText = "";
 
     /**
-     * Uninitialized value.
+     * Uninitialized integer value.
      */
-    private static final int UNINITIALIZED_START_TIME = -1;
-
-    /**
-     * The default text size set in the text paint.
-     */
-    private static final int DEFAULT_TEXT_SIZE = 12;
+    private static final int UNINITIALIZED_INT_VALUE = -1;
 
     /**
      * Rectangle to draw on canvas.
@@ -133,6 +128,10 @@ public class InvertedTextProgressbar extends ImageView {
             mText = "Loading...";
         }
 
+        // Set maximum or minimum values if there's any.
+        mMaxProgress = typedArray.getInteger(R.styleable.InvertedTextProgressbar_max_progress, UNINITIALIZED_INT_VALUE);
+        mMinProgress = typedArray.getInteger(R.styleable.InvertedTextProgressbar_min_progress, UNINITIALIZED_INT_VALUE);
+
         // Recycle the TypedArray.
         typedArray.recycle();
     }
@@ -156,7 +155,7 @@ public class InvertedTextProgressbar extends ImageView {
 
         if (mIsAnimating) {
             // Only start timing from first frame of animation
-            if (mStartTime == UNINITIALIZED_START_TIME) {
+            if (mStartTime == UNINITIALIZED_INT_VALUE) {
                 mStartTime = SystemClock.uptimeMillis();
                 endTime = mStartTime + mDurationMs;
             }
@@ -213,34 +212,130 @@ public class InvertedTextProgressbar extends ImageView {
     }
 
     /**
-     * Sets the X pivot position of the text to draw.
+     * Gets the paint currently being used for the overlapped text.
      *
-     * @param posX The position to set.
+     * @return The overlapped text paint.
      */
-    public void setTextPivotX(int posX) {
-        this.mPosX = posX;
+    public Paint getTextPaint() {
+        return mTextPaint;
     }
 
     /**
-     * Sets the Y pivot position of the text to draw.
+     * Sets the paint to be used for the overlapped text.
      *
-     * @param posY The position to set.
+     * @param textPaint The Paint to be set for the overlapped text.
      */
-    public void setTextPivotY(int posY) {
-        this.mPosY = posY;
+    public void setTextPaint(Paint textPaint) {
+        this.mTextPaint = mTextPaint;
     }
 
+    /**
+     * Gets the paint currently being used for the overlapping text.
+     *
+     * @return The overlapping text paint.
+     */
+    public Paint getTextInvertedPaint() {
+        return mTextInvertedPaint;
+    }
+
+    /**
+     * Sets the paint to be used for the overlapping text.
+     *
+     * @param textInvertedPaint The Paint to be set for the
+     * overlapping text.
+     */
+    public void setTextInvertedPaint(Paint textInvertedPaint) {
+        this.mTextInvertedPaint = mTextInvertedPaint;
+    }
+
+    /**
+     * Sets coordinates of the pivot position of the text to draw.
+     * If any of the coordinates are -1 then the text positions
+     * will be the center of the canvas.
+     *
+     * @param x The X position.
+     * @param y The Y position.
+     */
+    public void setTextPivot(int x, int y) {
+        this.mPosX = x;
+        this.mPosY = y;
+    }
+
+    /**
+     * Gets the current progress. Note that if it never had been
+     * set before this method will return -1.
+     *
+     * @return The current progress of the progress bar.
+     */
+    public int getCurrentProgress() {
+        return mCurrProgress;
+    }
+
+    /**
+     * Sets the current progress. Note that it's needed to set
+     * maximum and minimum progress values, otherwise nothing
+     * will occur.
+     *
+     * {@link #setMaxProgress(int)}
+     * {@link #setMinProgress(int)}
+     *
+     * @param progress The progress to be set.
+     */
     public void setProgress(int progress) {
         mCurrProgress = progress;
         invalidate();
     }
 
+    /**
+     * Gets the max progress. Note that if this value has not
+     * been set before it will return -1.
+     *
+     * @return The max progress.
+     */
+    public int getMaxProgress() {
+        return mMaxProgress;
+    }
+
+    /**
+     * Sets the maximum progress value.
+     *
+     * @param maxProgress The maximum progress.
+     */
     public void setMaxProgress(int maxProgress) {
         mMaxProgress = maxProgress;
     }
 
+    /**
+     * Gets the min progress. Note that if this value has not
+     * been set before it will return -1.
+     *
+     * @return The min progress.
+     */
+    public int getMinProgress() {
+        return mMinProgress;
+    }
+
+    /**
+     * Sets the minimum progress value.
+     *
+     * @param minProgress The minimum progress.
+     */
     public void setMinProgress(int minProgress) {
         mMinProgress = minProgress;
+    }
+
+    /**
+     * Sets the text size for both paints.
+     * If the paints have not been initizialized yet this method
+     * won't do anything.
+     *
+     * @param size The new text size to be set.
+     */
+    public void setTextSize(int size) {
+        if (mTextPaint != null && mTextInvertedPaint != null) {
+            mTextPaint.setTextSize(size);
+            mTextInvertedPaint.setTextSize(size);
+        }
     }
 
     /**
@@ -250,7 +345,7 @@ public class InvertedTextProgressbar extends ImageView {
      */
     public void startAnimation(int durationMs) {
         mIsAnimating = true;
-        mStartTime = UNINITIALIZED_START_TIME;
+        mStartTime = UNINITIALIZED_INT_VALUE;
         mDurationMs = durationMs;
         invalidate();
     }
@@ -264,7 +359,7 @@ public class InvertedTextProgressbar extends ImageView {
     }
 
     /**
-     * Sets the callback.
+     * Sets the callback to handle animation end.
      *
      * @param callback The callback to call upon events.
      */

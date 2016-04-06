@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:lib="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.danilomendes.animations.MainActivity"
     android:background="#FFFFFF"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -12,62 +10,121 @@
     android:paddingBottom="@dimen/activity_vertical_margin">
 
     <RelativeLayout
-        android:id="@+id/rl_animation_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipChildren="true"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginBottom="@dimen/activity_vertical_margin">
+        android:layout_height="wrap_content">
 
-        <!--<TextView
-            android:id="@+id/tv_animation_black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Please wait... Enjoy this cool effect..."
-            android:textSize="14sp"
-            android:gravity="center_horizontal"
-            android:textColor="#000000" />-->
-
-        <com.danilomendes.progressbar.InvertedTextProgressbar
-            android:id="@+id/itp_animation"
+        <TextView
+            android:id="@+id/tv_subtitle"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@null"
-            android:src="@drawable/progress_container"
-            android:onClick="onClick"
-            lib:text="Loading..." />
+            android:layout_height="wrap_content"
+            android:text="@string/app_subtitle" />
+
+        <RelativeLayout
+            android:id="@+id/rl_progress_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="true"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_below="@+id/tv_subtitle">
+
+            <com.danilomendes.progressbar.InvertedTextProgressbar
+                android:id="@+id/itp_progress"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:src="@drawable/background_red"
+                android:onClick="onClick"
+                lib:text="Awesome animation" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_progress_container_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="true"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_below="@+id/rl_progress_container">
+
+            <com.danilomendes.progressbar.InvertedTextProgressbar
+                android:id="@+id/itp_progress_2"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:src="@drawable/background_orange"
+                android:onClick="onClick"
+                lib:text="Colors and sizes"
+                lib:text_color="#666666"
+                lib:text_inverted_color="#FFFFFF"
+                lib:text_size="18sp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_progress_container_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="true"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_below="@+id/rl_progress_container_2">
+
+            <com.danilomendes.progressbar.InvertedTextProgressbar
+                android:id="@+id/itp_progress_1"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:src="@drawable/background_green"
+                android:onClick="onClick"
+                lib:text="Align me to left"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_progress_container_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="true"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_below="@+id/rl_progress_container_1">
+
+            <com.danilomendes.progressbar.InvertedTextProgressbar
+                android:id="@+id/itp_progress_3"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:src="@drawable/background_purple"
+                android:onClick="onClick"
+                lib:text="Progress"
+                lib:text_color="#666666"
+                lib:text_inverted_color="#FFFFFF"
+                lib:max_progress="100"
+                lib:min_progress="0"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_progress_container_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="true"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_below="@+id/rl_progress_container_3">
+
+            <com.danilomendes.progressbar.InvertedTextProgressbar
+                android:id="@+id/itp_progress_4"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:src="@drawable/background_gray"
+                android:onClick="onClick"
+                lib:text="Party progress"
+                lib:text_color="#000000"
+                lib:text_inverted_color="#FFFFFF"
+                lib:max_progress="100"
+                lib:min_progress="0"/>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/rl_progress_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipChildren="true"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_below="@+id/rl_animation_container">
-
-        <!--<TextView
-            android:id="@+id/tv_progress_black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Please wait... Enjoy this cool effect..."
-            android:textSize="14sp"
-            android:gravity="center_horizontal"
-            android:textColor="#000000" />-->
-
-        <com.danilomendes.progressbar.InvertedTextProgressbar
-            android:id="@+id/itp_progress"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@null"
-            android:src="@drawable/progress_container"
-            android:onClick="onClick"
-            lib:text="Loading..."/>
-
-    </RelativeLayout>
-
-</RelativeLayout>
+</ScrollView>

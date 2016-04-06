@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">IvertedTextProgressBar</string>
+    <string name="app_name">Inverted Text Progressbar</string>
+    <string name="app_subtitle">Click any of the bars below</string>
 </resources>
