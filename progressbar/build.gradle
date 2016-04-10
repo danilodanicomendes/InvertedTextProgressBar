@@ -1,5 +1,29 @@
 apply plugin: 'com.android.library'
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'progressbar'
+
+    publishedGroupId = 'com.danilomendes.progressbar'
+    libraryName = 'progressbar'
+    artifact = 'progressbar'
+
+    libraryDescription = 'Android progress bar with text that, when the bar reaches the text, changes the color of the overlapping text.'
+
+    siteUrl = 'https://github.com/danilodanicomendes/InvertedTextProgressBar'
+    gitUrl = 'https://github.com/danilodanicomendes/InvertedTextProgressBar.git'
+
+    libraryVersion = '1.0.2'
+
+    developerId = 'danilomendes'
+    developerName = 'Danilo Mendes'
+    developerEmail = 'ddannillo@gmail.com'
+
+    licenseName = 'MIT License'
+    licenseUrl = 'https://opensource.org/licenses/MIT'
+    allLicenses = ["MIT"]
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -7,8 +31,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 1002
+        versionName "1.0.2"
     }
     buildTypes {
         release {
@@ -23,3 +47,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
 }
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
